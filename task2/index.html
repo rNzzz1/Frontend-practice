@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Товаров</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Управление товарами</h1>
+        
+        <!-- Форма добавления -->
+        <div class="card">
+            <h2>Добавить товар</h2>
+            <form id="addForm">
+                <input type="text" id="name" placeholder="Название товара" required>
+                <input type="number" id="price" placeholder="Цена" step="0.01" required>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+
+        <!-- Список товаров -->
+        <div class="card">
+            <div class="header">
+                <h2>Список товаров</h2>
+                <button id="refresh" class="btn-refresh">Обновить</button>
+            </div>
+            <div id="products"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Редактировать товар</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <input type="text" id="editName" placeholder="Название" required>
+                <input type="number" id="editPrice" placeholder="Цена" step="0.01" required>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
