@@ -1,170 +1,216 @@
 const express = require("express");
-const cors = require("cors");
 const { nanoid } = require("nanoid");
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-app.use(cors({
-  origin: "http://localhost:3001",
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type"]
-}));
-
-// ===== ТОВАРЫ =====
-let products = [
-  {
-    id: nanoid(6),
-    name: "Logitech G Pro X",
-    category: "Keyboard",
-    description: "Механическая игровая клавиатура",
-    price: 120,
-    stock: 15,
-    rating: 4.8,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "Razer DeathAdder V3",
-    category: "Mouse",
-    description: "Игровая мышь 26000 DPI",
-    price: 90,
-    stock: 25,
-    rating: 4.7,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "SteelSeries Arctis 7",
-    category: "Headset",
-    description: "Беспроводная гарнитура",
-    price: 150,
-    stock: 10,
-    rating: 4.6,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "HyperX Pulsefire",
-    category: "Mouse",
-    description: "RGB игровая мышь",
-    price: 70,
-    stock: 30,
-    rating: 4.4,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "Corsair K95",
-    category: "Keyboard",
-    description: "Механическая клавиатура RGB",
-    price: 200,
-    stock: 8,
-    rating: 4.9,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "Xbox Controller",
-    category: "Gamepad",
-    description: "Оригинальный геймпад Xbox",
-    price: 65,
-    stock: 40,
-    rating: 4.8,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "PlayStation DualSense",
-    category: "Gamepad",
-    description: "Геймпад PS5",
-    price: 75,
-    stock: 35,
-    rating: 4.9,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "Razer Mousepad XXL",
-    category: "Mousepad",
-    description: "Большой коврик для мыши",
-    price: 30,
-    stock: 50,
-    rating: 4.5,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "Logitech G733",
-    category: "Headset",
-    description: "RGB гарнитура",
-    price: 130,
-    stock: 12,
-    rating: 4.6,
-    image: "https://via.placeholder.com/150"
-  },
-  {
-    id: nanoid(6),
-    name: "Asus ROG Keyboard",
-    category: "Keyboard",
-    description: "Премиум клавиатура",
-    price: 180,
-    stock: 6,
-    rating: 4.7,
-    image: "https://via.placeholder.com/150"
-  }
+// ===== ДАННЫЕ =====
+let users = [
+  { id: nanoid(6), name: "Петр", age: 16 },
+  { id: nanoid(6), name: "Иван", age: 18 },
+  { id: nanoid(6), name: "Дарья", age: 20 }
 ];
+
+// ===== SWAGGER НАСТРОЙКА =====
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Users REST API",
+      version: "1.0.0",
+      description: "API для управления пользователями"
+    },
+    servers: [
+      {
+        url: `http://localhost:${port}`
+      }
+    ]
+  },
+  apis: ["./app.js"]
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - name
+ *         - age
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: Уникальный ID пользователя
+ *         name:
+ *           type: string
+ *           description: Имя пользователя
+ *         age:
+ *           type: integer
+ *           description: Возраст пользователя
+ *       example:
+ *         id: "abc123"
+ *         name: "Петр"
+ *         age: 16
+ */
 
 // ===== CRUD =====
 
-// GET all
-app.get("/api/products", (req, res) => {
-  res.json(products);
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: Получить список пользователей
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Массив пользователей
+ */
+app.get("/api/users", (req, res) => {
+  res.json(users);
 });
 
-// GET by id
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find(p => p.id === req.params.id);
-  if (!product) return res.status(404).json({ error: "Not found" });
-  res.json(product);
-});
+/**
+ * @swagger
+ * /api/users:
+ *   post:
+ *     summary: Создать нового пользователя
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - age
+ *             properties:
+ *               name:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: Пользователь создан
+ *       400:
+ *         description: Ошибка в данных
+ */
+app.post("/api/users", (req, res) => {
+  const { name, age } = req.body;
 
-// POST
-app.post("/api/products", (req, res) => {
-  const { name, category, description, price, stock } = req.body;
+  if (!name || age === undefined) {
+    return res.status(400).json({ error: "Name and age are required" });
+  }
 
-  const newProduct = {
+  const newUser = {
     id: nanoid(6),
-    name,
-    category,
-    description,
-    price: Number(price),
-    stock: Number(stock),
-    rating: 0,
-    image: "https://via.placeholder.com/150"
+    name: name.trim(),
+    age: Number(age)
   };
 
-  products.push(newProduct);
-  res.status(201).json(newProduct);
+  users.push(newUser);
+  res.status(201).json(newUser);
 });
 
-// PATCH
-app.patch("/api/products/:id", (req, res) => {
-  const product = products.find(p => p.id === req.params.id);
-  if (!product) return res.status(404).json({ error: "Not found" });
-
-  Object.assign(product, req.body);
-  res.json(product);
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   get:
+ *     summary: Получить пользователя по ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Пользователь найден
+ *       404:
+ *         description: Пользователь не найден
+ */
+app.get("/api/users/:id", (req, res) => {
+  const user = users.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ error: "User not found" });
+  res.json(user);
 });
 
-// DELETE
-app.delete("/api/products/:id", (req, res) => {
-  products = products.filter(p => p.id !== req.params.id);
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   patch:
+ *     summary: Обновить данные пользователя
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Пользователь обновлен
+ *       404:
+ *         description: Пользователь не найден
+ */
+app.patch("/api/users/:id", (req, res) => {
+  const user = users.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ error: "User not found" });
+
+  const { name, age } = req.body;
+  if (name !== undefined) user.name = name.trim();
+  if (age !== undefined) user.age = Number(age);
+
+  res.json(user);
+});
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     summary: Удалить пользователя
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: Пользователь удален
+ *       404:
+ *         description: Пользователь не найден
+ */
+app.delete("/api/users/:id", (req, res) => {
+  const exists = users.some(u => u.id === req.params.id);
+  if (!exists) return res.status(404).json({ error: "User not found" });
+
+  users = users.filter(u => u.id !== req.params.id);
   res.status(204).send();
 });
 
+// ===== ЗАПУСК =====
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
+  console.log(`Swagger docs: http://localhost:${port}/api-docs`);
 });
