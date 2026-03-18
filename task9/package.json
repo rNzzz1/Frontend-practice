@@ -1,0 +1,19 @@
+{
+  "name": "practice9-refresh-tokens",
+  "version": "1.0.0",
+  "description": "Практическое занятие №9: refresh tokens + protected routes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["express", "bcrypt", "jsonwebtoken", "auth", "practice"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.1.6"
+  }
+}

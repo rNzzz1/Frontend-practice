@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="auth-card">
+        <p class="badge">Практика 9</p>
+        <h1>Личный вход</h1>
+        <p class="subtitle">Введите данные аккаунта, чтобы перейти к каталогу товаров. Сессия обновляется через refresh-токен.</p>
+
+        <div class="mode-switch" role="tablist" aria-label="Режим формы">
+          <button id="tabLogin" class="mode-btn is-active" type="button">Вход</button>
+          <button id="tabRegister" class="mode-btn" type="button">Регистрация</button>
+        </div>
+
+        <form id="loginForm" class="auth-form is-active">
+          <label class="field">
+            <span>Email</span>
+            <input name="email" type="email" placeholder="user@example.com" required />
+          </label>
+
+          <label class="field">
+            <span>Пароль</span>
+            <input name="password" type="password" placeholder="Введите пароль" required />
+          </label>
+
+          <button class="submit-btn" type="submit">Войти</button>
+          <button id="gotoRegister" class="text-link" type="button">Нет аккаунта? Зарегистрироваться</button>
+        </form>
+
+        <form id="registerForm" class="auth-form">
+          <label class="field">
+            <span>Email</span>
+            <input name="email" type="email" placeholder="user@example.com" required />
+          </label>
+
+          <div class="row">
+            <label class="field">
+              <span>Имя</span>
+              <input name="first_name" type="text" placeholder="Петр" required />
+            </label>
+
+            <label class="field">
+              <span>Фамилия</span>
+              <input name="last_name" type="text" placeholder="Петров" required />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Пароль</span>
+            <input name="password" type="password" placeholder="Придумайте пароль" required />
+          </label>
+
+          <button class="submit-btn" type="submit">Создать аккаунт</button>
+          <button id="gotoLogin" class="text-link" type="button">Уже есть аккаунт? Войти</button>
+        </form>
+
+        <p id="authMessage" class="auth-message" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
