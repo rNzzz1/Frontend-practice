@@ -1,0 +1,19 @@
+{
+  "name": "practice11-rbac",
+  "version": "1.0.0",
+  "description": "Практическое занятие №11: роли и RBAC на JWT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["express", "auth", "jwt", "rbac", "practice"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.1.6"
+  }
+}

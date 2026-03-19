@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Практика 11 | Gaming Store</title>
+    <link rel="stylesheet" href="/site.css" />
+  </head>
+  <body>
+    <main class="store-page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Практика 11</p>
+          <h1>Gaming Store</h1>
+          <p id="userLine" class="hero-subtitle">Проверка авторизации...</p>
+        </div>
+
+        <div class="hero-actions">
+          <span id="roleBadge" class="role-badge">role</span>
+          <button id="reloadBtn" class="btn" type="button">Обновить каталог</button>
+          <button id="logoutBtn" class="btn ghost" type="button">Выйти</button>
+        </div>
+      </header>
+
+      <section class="dashboard-grid">
+        <article class="panel">
+          <h2>Права доступа</h2>
+          <p id="permissionLine" class="panel-text">Загрузка прав...</p>
+          <div class="button-group">
+            <button id="checkRoleBtn" class="btn secondary" type="button">Проверить seller/admin</button>
+            <button id="checkAdminBtn" class="btn secondary" type="button">Проверить только admin</button>
+          </div>
+          <pre id="accessResult" class="result-box">Ожидание проверки...</pre>
+        </article>
+
+        <article class="panel">
+          <h2>Действия с товарами</h2>
+          <p class="panel-text">
+            Для <strong>seller</strong> доступно создание и изменение товара.
+            Для <strong>admin</strong> дополнительно доступно удаление.
+          </p>
+          <div class="button-group">
+            <button id="createBtn" class="btn" type="button">Добавить тестовый товар</button>
+            <button id="updateBtn" class="btn secondary" type="button">Изменить последний товар</button>
+            <button id="deleteBtn" class="btn danger" type="button">Удалить последний товар</button>
+          </div>
+          <p id="actionHint" class="hint"></p>
+        </article>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>Каталог товаров</h2>
+          <p id="status" class="status">Загрузка...</p>
+        </div>
+        <section id="productList" class="product-list"></section>
+      </section>
+    </main>
+
+    <script src="/site.js"></script>
+  </body>
+</html>
