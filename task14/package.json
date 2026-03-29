@@ -1,0 +1,20 @@
+{
+  "name": "practice14-web-app-manifest",
+  "version": "1.0.0",
+  "description": "Практическое занятие №14: Web App Manifest для PWA заметок",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node smoke-test.js"
+  },
+  "keywords": [
+    "service-worker",
+    "offline",
+    "localstorage",
+    "notes",
+    "practice"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 13 | Offline Notes Board</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <meta name="theme-color" content="#133c55" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Практика 13</p>
+          <h1>Offline Notes Board</h1>
+          <p class="lead">
+            Менеджер заметок с офлайн-доступом. Интерфейс работает без интернета,
+            а заметки хранятся в <code>localStorage</code>.
+          </p>
+        </div>
+
+        <div class="status-stack">
+          <div class="status-chip">
+            <span class="status-label">Сеть</span>
+            <strong id="networkStatus">Проверка...</strong>
+          </div>
+          <div class="status-chip">
+            <span class="status-label">Service Worker</span>
+            <strong id="swStatus">Регистрация...</strong>
+          </div>
+          <div class="status-chip">
+            <span class="status-label">Заметок</span>
+            <strong id="notesCount">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard">
+        <article class="panel panel-form">
+          <div class="panel-head">
+            <h2>Новая заметка</h2>
+            <p>Добавление работает и онлайн, и офлайн.</p>
+          </div>
+
+          <form id="noteForm" class="note-form">
+            <label class="field">
+              <span>Заголовок</span>
+              <input
+                id="titleInput"
+                name="title"
+                type="text"
+                maxlength="80"
+                placeholder="Например, Подготовить отчет"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Текст заметки</span>
+              <textarea
+                id="textInput"
+                name="text"
+                rows="6"
+                maxlength="400"
+                placeholder="Кратко опишите задачу или заметку"
+                required
+              ></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button class="btn" type="submit">Добавить заметку</button>
+              <button id="seedBtn" class="btn ghost" type="button">Добавить демо</button>
+              <button id="clearBtn" class="btn danger ghost" type="button">Очистить все</button>
+            </div>
+          </form>
+
+          <p id="formMessage" class="form-message" aria-live="polite"></p>
+        </article>
+
+        <article class="panel panel-info">
+          <div class="panel-head">
+            <h2>Офлайн-поведение</h2>
+            <p>Что именно реализовано в этой практике.</p>
+          </div>
+
+          <ul class="feature-list">
+            <li>Статические файлы кэшируются через <code>Service Worker</code>.</li>
+            <li>После первого открытия страница загружается даже без сети.</li>
+            <li>Заметки хранятся локально в <code>localStorage</code>.</li>
+            <li>Добавление и просмотр заметок доступны офлайн.</li>
+          </ul>
+
+          <pre id="debugBox" class="debug-box">Ожидание событий...</pre>
+        </article>
+      </section>
+
+      <section class="notes-section">
+        <div class="section-head">
+          <h2>Список заметок</h2>
+          <p id="sectionHint">Пока заметок нет. Добавьте первую.</p>
+        </div>
+
+        <div id="notesGrid" class="notes-grid"></div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
