@@ -1,0 +1,16 @@
+<section class="page-block">
+  <div class="page-head">
+    <h2>О нас</h2>
+    <p>
+      Эта версия заметок доработана в рамках практики 16: подключены
+      <code>Socket.IO</code> и уведомления браузера без Service Worker.
+    </p>
+  </div>
+
+  <ul class="about-list">
+    <li>Shell интерфейса кешируется стратегией <code>Cache First</code>.</li>
+    <li>Динамические страницы <code>/content/*</code> грузятся по <code>Network First</code>.</li>
+    <li>При добавлении заметки сервер рассылает событие другим клиентам по Socket.IO.</li>
+    <li>Клиенты с включенными уведомлениями получают системное уведомление через Notification API.</li>
+  </ul>
+</section>

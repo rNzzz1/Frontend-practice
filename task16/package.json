@@ -1,0 +1,23 @@
+{
+  "name": "practice16-realtime-notifications",
+  "version": "1.0.0",
+  "description": "Практическое занятие №16: Socket.IO и уведомления без Service Worker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node smoke-test.js"
+  },
+  "keywords": [
+    "https",
+    "socket.io",
+    "notifications",
+    "pwa",
+    "app-shell"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  }
+}

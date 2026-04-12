@@ -1,0 +1,27 @@
+{
+  "name": "practice17-push-reminders",
+  "version": "1.0.0",
+  "description": "Практическое занятие №17: детализация Push с напоминаниями и snooze",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node smoke-test.js"
+  },
+  "keywords": [
+    "https",
+    "socket.io",
+    "push",
+    "service-worker",
+    "web-push",
+    "reminders",
+    "pwa",
+    "app-shell"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "socket.io": "^4.8.1",
+    "web-push": "^3.6.7"
+  }
+}

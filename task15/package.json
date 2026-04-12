@@ -1,0 +1,20 @@
+{
+  "name": "practice15-https-app-shell",
+  "version": "1.0.0",
+  "description": "Практическое занятие №15: HTTPS и App Shell для PWA заметок",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node smoke-test.js"
+  },
+  "keywords": [
+    "https",
+    "app-shell",
+    "pwa",
+    "service-worker",
+    "notes"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

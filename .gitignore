@@ -1,5 +1,8 @@
 .DS_Store
 **/.DS_Store
+**/node_modules/
+npm-debug.log*
+/task17/vapid-keys.json
 *.mov
 *.mp4
 Video/

@@ -1,0 +1,18 @@
+<section class="page-block">
+  <div class="page-head">
+    <h2>О практике 17</h2>
+    <p>
+      Это доработка практики 16: реализованы планируемые push-напоминания,
+      кнопка <code>Отложить на 5 минут</code> в уведомлении и endpoint
+      <code>/snooze</code> на сервере.
+    </p>
+  </div>
+
+  <ul class="about-list">
+    <li>Форма заметки с напоминанием использует <code>datetime-local</code>.</li>
+    <li>В <code>localStorage</code> у заметок есть <code>id</code> и <code>reminder</code> (timestamp).</li>
+    <li>Сервер хранит активные таймеры в <code>Map</code> и планирует их через <code>setTimeout</code>.</li>
+    <li>Service Worker принимает push и показывает action-кнопку для snooze.</li>
+    <li>После закрытия вкладки уведомления продолжают приходить через push-подписку.</li>
+  </ul>
+</section>

@@ -1,0 +1,49 @@
+<section class="page-block">
+  <div class="page-head">
+    <h2>Заметки и уведомления</h2>
+    <p>
+      При добавлении заметки событие отправляется через <code>Socket.IO</code>, а уведомление
+      показывается через браузерный <code>Notification API</code> без Service Worker.
+    </p>
+  </div>
+
+  <div class="actions-row">
+    <button id="enablePushBtn" class="btn" type="button">Включить уведомления</button>
+    <button id="disablePushBtn" class="btn ghost" type="button">Отключить уведомления</button>
+  </div>
+
+  <p id="pushHint" class="hint-text">Для активации дайте разрешение на уведомления в браузере.</p>
+
+  <form id="noteForm" class="note-form">
+    <label class="field">
+      <span>Заголовок</span>
+      <input id="titleInput" type="text" maxlength="80" placeholder="Например, Проверить отчет" required />
+    </label>
+
+    <label class="field">
+      <span>Текст заметки</span>
+      <textarea id="textInput" rows="5" maxlength="400" placeholder="Коротко опишите задачу" required></textarea>
+    </label>
+
+    <div class="actions-row">
+      <button class="btn" type="submit">Добавить заметку</button>
+      <button id="clearBtn" class="btn ghost" type="button">Очистить заметки</button>
+    </div>
+  </form>
+
+  <p id="formMessage" class="form-message" aria-live="polite"></p>
+
+  <div class="split-grid">
+    <section>
+      <h3 class="section-title">Мои заметки</h3>
+      <div id="notesList" class="notes-list"></div>
+    </section>
+
+    <section>
+      <h3 class="section-title">События в реальном времени</h3>
+      <div id="eventsList" class="events-list">
+        <article class="empty-card">Пока событий нет.</article>
+      </div>
+    </section>
+  </div>
+</section>

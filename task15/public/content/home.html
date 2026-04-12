@@ -1,0 +1,30 @@
+<section class="page-block">
+  <div class="page-head">
+    <h2>Заметки</h2>
+    <p>
+      Эта часть страницы подгружается динамически через <code>fetch</code> и кешируется
+      стратегией <code>Network First</code>.
+    </p>
+  </div>
+
+  <form id="noteForm" class="note-form">
+    <label class="field">
+      <span>Заголовок</span>
+      <input id="titleInput" type="text" maxlength="80" placeholder="Например, План на неделю" required />
+    </label>
+
+    <label class="field">
+      <span>Текст заметки</span>
+      <textarea id="textInput" rows="5" maxlength="400" placeholder="Коротко опишите задачу" required></textarea>
+    </label>
+
+    <div class="actions">
+      <button class="btn" type="submit">Добавить</button>
+      <button id="clearBtn" class="btn ghost" type="button">Очистить</button>
+    </div>
+  </form>
+
+  <p id="formMessage" class="form-message" aria-live="polite"></p>
+
+  <div id="notesList" class="notes-list"></div>
+</section>

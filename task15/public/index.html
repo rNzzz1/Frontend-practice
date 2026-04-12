@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 15 | Secure Notes Shell</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0f3552" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Secure Notes" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="topbar-copy">
+          <p class="eyebrow">Практика 15</p>
+          <h1>Secure Notes Shell</h1>
+          <p>
+            HTTPS + App Shell: статический каркас загружается мгновенно,
+            содержимое страниц подгружается отдельно.
+          </p>
+        </div>
+
+        <div class="status-grid">
+          <div class="status-card">
+            <span>Протокол</span>
+            <strong id="httpsStatus">Проверка...</strong>
+          </div>
+          <div class="status-card">
+            <span>Сеть</span>
+            <strong id="networkStatus">Проверка...</strong>
+          </div>
+          <div class="status-card">
+            <span>Service Worker</span>
+            <strong id="swStatus">Регистрация...</strong>
+          </div>
+          <div class="status-card">
+            <span>Заметок</span>
+            <strong id="notesCount">0</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="shell-nav">
+        <a id="routeHome" href="#home">Главная</a>
+        <a id="routeAbout" href="#about">О нас</a>
+      </nav>
+
+      <section id="pageContainer" class="page-container" aria-live="polite">
+        <article class="loading-card">Загрузка страницы...</article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
